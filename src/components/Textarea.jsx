@@ -5,7 +5,8 @@ export default class Textarea extends Component {
         super(props);
 
         this.state= {
-            value: 'Choose your job'
+            value: '',
+            errorMessage: true
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -14,16 +15,36 @@ export default class Textarea extends Component {
 
     handleChange(e){
         e.preventDefault();
-        const value = e.target.value;
+        const value = e.target.value.replace(/  +/g, ' ');
         this.setState({
             value : value
         });
+        if (value.length > 99){
+            this.setState({
+                errorMessage: false
+            });
+        }else{
+            this.setState({
+                errorMessage: true
+            });
+        }
     }
 
     render(){
+        const errorMessage = ()=>{
+            if (this.state.errorMessage){
+                return(
+                    <div className="error">
+                        Enter at least 100 symbols.
+                    </div>
+                )
+            }
+        }
+
         return(
-            <div>
-               <textarea value={this.state.value} onChange={this.handleChange} />
+            <div className="form-group">
+                <textarea value={this.state.value} placeholder='Describe your job' className="form-control" onChange={this.handleChange} />
+                {errorMessage()}
             </div>
         )
     }

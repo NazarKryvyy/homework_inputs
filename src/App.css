@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+form{
+  width: 400px; 
+  margin: 0 auto;
+}
+
+.form-control{
+  margin-bottom: 20px;
+}
+
+.error{
+  color: red;
+}
+.succes{
+  color: green;
+}

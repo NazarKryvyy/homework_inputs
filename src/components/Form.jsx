@@ -24,6 +24,7 @@ export default class Form extends Component {
                 <Select />
                 <Textarea />
                 <NumberInput />
+                <button>Submit</button>
             </form>
         )
     }

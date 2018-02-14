@@ -5,7 +5,8 @@ export default class Input extends Component {
         super(props);
 
         this.state={
-            inputValue: ''
+            inputValue: '',
+            errorMessage : false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -13,15 +14,42 @@ export default class Input extends Component {
     }
 
     handleChange(e){
-        this.setState({
-            inputValue : e.target.value
-        })
+        const value = e.target.value;
+        if (!/[0-9_\-=+]/.test(value)){
+            this.setState({
+                inputValue: value,
+                errorMessage: false
+            });
+
+        } else{
+            this.setState({
+                errorMessage: true
+            });
+        }        
     }
 
     render() {
+        const errorMessage  = () =>{
+            if(this.state.errorMessage){
+                return (
+                    <div className='error'>
+                        Only Text
+                    </div>
+                )
+            }else {
+                return (
+                    <div className='succes'>
+                        Everything all right!
+                    </div>
+                )
+            }
+        } 
+        
         return(
-            <div>
-                <input type="text" placeholder='Enter your name' value={this.state.inputValue} onChange={this.handleChange}/>
+            <div className="form-group">
+                <label htmlFor="text">Name</label>
+                <input type="text" className="form-control" placeholder='Enter your name' value={this.state.inputValue} onChange={this.handleChange}/>
+                {errorMessage()}
             </div>
         )
     }

@@ -5,7 +5,7 @@ export default class Select extends Component {
         super(props);
 
         this.state= {
-            selectValue: 'Choose your job'
+            selectValue: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -21,8 +21,10 @@ export default class Select extends Component {
 
     render(){
         return(
-            <div>
-                <select name="job" value={this.state.selectValue}  onChange={this.handleChange}>
+            <div className="form-group">
+                <label>Job</label>
+                <select name="job" className="form-control"  value={this.state.selectValue}  onChange={this.handleChange}>
+                    <option>Choose your job</option>
                     <option value="Engenier">Engenier</option>
                     <option value="Developer">Developer</option>
                     <option value="QA">QA</option>
