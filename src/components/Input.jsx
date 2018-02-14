@@ -41,7 +41,7 @@ export default class Input extends Component {
                 )
             }else {
                 return (
-                    <div className='succes'>
+                    <div className='success'>
                     </div>
                 )
             }

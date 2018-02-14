@@ -35,13 +35,13 @@ export default class NumberInput extends Component {
                 inputValue: value,
                 errorMessage: false
             });
-            this.props.requireValue('inputNumber', value, this.state.errorMessage);
+            this.props.requireValue('inputNumber', value, false);
 
         } else {
             this.setState({
                 errorMessage: true
             });
-            this.props.requireValue('inputNumber', value, this.state.errorMessage);
+            this.props.requireValue('inputNumber', value, true);
         }        
     }
 
@@ -55,7 +55,7 @@ export default class NumberInput extends Component {
                 )
             } else {
                 return (
-                    <div className='succes'>
+                    <div className='success'>
                         
                     </div>
                 )

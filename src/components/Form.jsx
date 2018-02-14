@@ -20,7 +20,8 @@ export default class Form extends Component {
                 select: true,
                 textarea: true,
                 inputNumber: true
-            }
+            },
+            canSubmit : false
 
         }; 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,13 +30,17 @@ export default class Form extends Component {
 
     handleSubmit(e){        
         e.preventDefault();
-        let canSubmit = true;
+        let canSubmit = this.state.canSubmit;
         for (let permission in this.state.formErrors){
             if (this.state.formErrors[permission]){
                 canSubmit = false;
                 return false;
             }
+            canSubmit = true;
         }
+        this.setState({
+            canSubmit: canSubmit
+        })
         if (canSubmit){
             console.log(this.state.formValue);
         }
@@ -53,6 +58,19 @@ export default class Form extends Component {
     }
 
     render(){
+        const canSubmit = this.state.canSubmit
+        const formError = () => {
+            if (canSubmit){
+                return (
+                    <div className="success">Validate succesfully</div>
+                )
+            }else{
+                return (
+                    <div className="error">Enter all fields</div>
+                )
+            }
+        }
+
         return(
             <form action="#" onSubmit={this.handleSubmit}>
                 <Input requireValue={this.updateFormValue} />
@@ -60,6 +78,7 @@ export default class Form extends Component {
                 <Textarea requireValue={this.updateFormValue} />
                 <NumberInput requireValue={this.updateFormValue}/>
                 <button>Submit</button>
+                {formError()}
             </form>
         )
     }
