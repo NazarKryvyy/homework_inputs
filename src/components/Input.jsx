@@ -21,10 +21,13 @@ export default class Input extends Component {
                 errorMessage: false
             });
 
+            this.props.requireValue('input', value, this.state.errorMessage);
+
         } else{
             this.setState({
                 errorMessage: true
             });
+            this.props.requireValue('input', value, this.state.errorMessage);
         }        
     }
 
@@ -39,7 +42,6 @@ export default class Input extends Component {
             }else {
                 return (
                     <div className='succes'>
-                        Everything all right!
                     </div>
                 )
             }

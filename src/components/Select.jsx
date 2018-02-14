@@ -5,7 +5,8 @@ export default class Select extends Component {
         super(props);
 
         this.state= {
-            selectValue: ''
+            selectValue: '',
+            errorMessage: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -17,6 +18,7 @@ export default class Select extends Component {
         this.setState({
             selectValue : value
         });
+        this.props.requireValue('select', value, this.state.errorMessage);
     }
 
     render(){

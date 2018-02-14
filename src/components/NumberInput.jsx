@@ -19,7 +19,7 @@ export default class NumberInput extends Component {
             value = value.replace(/[\D]/g, '').split('');
             let pointPosition = 3;
             for (let i = 0; i < value.length; i++){
-                if (i == pointPosition){
+                if (i === pointPosition){
                     value.splice((-pointPosition), 0 , '.');
                     pointPosition += 4;
                     i++;
@@ -35,11 +35,13 @@ export default class NumberInput extends Component {
                 inputValue: value,
                 errorMessage: false
             });
+            this.props.requireValue('inputNumber', value, this.state.errorMessage);
 
         } else {
             this.setState({
                 errorMessage: true
             });
+            this.props.requireValue('inputNumber', value, this.state.errorMessage);
         }        
     }
 

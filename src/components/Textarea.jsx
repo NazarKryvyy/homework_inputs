@@ -23,10 +23,12 @@ export default class Textarea extends Component {
             this.setState({
                 errorMessage: false
             });
+            this.props.requireValue('textarea', value, this.state.errorMessage);
         }else{
             this.setState({
                 errorMessage: true
             });
+            this.props.requireValue('textarea', value, this.state.errorMessage);
         }
     }
 
